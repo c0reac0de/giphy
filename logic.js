@@ -59,17 +59,19 @@ function createButton(){
             //when ajax call recieved, run following function
         }).then(function (response) {
             //create variable for retrieved data
-            var returnFlower = response.data;
+           var rF = response.data;
+           console.log(rF);
             //create new variable for length of response
             f = response.data.length;
             //for loop to run through data 
             for (i = 0; i < f; i++) {
                 //new variable for retrieved images
-                var imgURL = returnFlower[i].embed_url;
+                var returnFlower = response.data[i].images.original.url;
                 //new variable new image div
-                var showFlower=$("<img>");
-                showFlower.attr("src",imgURL);
-                $('#display-flowers').append(showFlower);
+                var showFlower=$("<img>").attr("src",returnFlower);
+                
+               // $('#display-flowers').append(showFlower);
+                $("#display-flowers").append(showFlower);
                 console.log(returnFlower);
             }
         })
